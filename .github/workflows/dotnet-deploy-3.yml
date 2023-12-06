@@ -66,7 +66,7 @@ jobs:
     needs: dockerBuildPush
     environment:
       name: dev
-      url: https://{your_prefix}-dev.azurewebsites.net/
+      url: https://t5tdp75nrrock-dev.azurewebsites.net/
     
     steps:
       - name: 'Login via Azure CLI'
@@ -76,8 +76,8 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: '{your_prefix}-dev'
-          images: {your_registry_name}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+          app-name: 't5tdp75nrrock-dev'
+          images: t5tdp75nrrockmpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-test:
   
@@ -85,7 +85,7 @@ jobs:
     needs: deploy-to-dev
     environment:
       name: test
-      url: https://{your_prefix}-test.azurewebsites.net/
+      url: https://t5tdp75nrrock-test.azurewebsites.net/
     
     steps:
     - uses: actions/checkout@v3
@@ -97,8 +97,8 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '{your_prefix}-test'
-        images: {your_registry_name}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+        app-name: 't5tdp75nrrock-test'
+        images: t5tdp75nrrockmpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
 
   deploy-to-prod:
   
@@ -106,7 +106,7 @@ jobs:
     needs: deploy-to-test
     environment:
       name: prod
-      url: https://{your_prefix}-prod.azurewebsites.net/
+      url: https://t5tdp75nrrock-prod.azurewebsites.net/
     
     steps:
     - uses: actions/checkout@v3
@@ -118,5 +118,5 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: '{your_prefix}-prod'
-        images: {your_registry_name}.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
+        app-name: 't5tdp75nrrock-prod'
+        images: t5tdp75nrrockmpnpreg.azurecr.io/techboost/dotnetcoreapp:${{github.run_number}}
